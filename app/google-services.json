@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "901473645358",
+    "firebase_url": "https://agriextfa.firebaseio.com",
+    "project_id": "agriextfa",
+    "storage_bucket": "agriextfa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901473645358:android:841b87d5cf43ab9effc0bf",
+        "android_client_info": {
+          "package_name": "sindh.agriculureextension.fadiary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901473645358-rculqpj6nc0gmp7g63cdmc2tupps777k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sindh.agriculureextension.fadiary",
+            "certificate_hash": "5e817f19663284cdbb6a5d8e98ffd976bf8cbbdc"
+          }
+        },
+        {
+          "client_id": "901473645358-mci25407234qf3dm8gi6pbmijv3rim3p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCls0x0Hr0nP3reb3fPCDWhLgN_ufABG4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901473645358-mci25407234qf3dm8gi6pbmijv3rim3p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

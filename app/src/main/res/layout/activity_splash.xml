@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".splash.Splash">
+
+
+    <com.github.florent37.shapeofview.shapes.ArcView
+        android:id="@+id/splashArc"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:shape_arc_cropDirection="outside"
+        app:shape_arc_height="20dp"
+        app:shape_arc_position="bottom">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:id="@+id/mainTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+
+                android:padding="16dp"
+                android:text="@string/title"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </com.github.florent37.shapeofview.shapes.ArcView>
+
+    <com.github.florent37.shapeofview.shapes.ArcView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mainImage"
+        app:shape_arc_cropDirection="outside"
+        app:shape_arc_height="20dp"
+        app:shape_arc_position="top">
+        <ImageView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/splashArc"
+            android:src="@drawable/diary"/>
+
+    </com.github.florent37.shapeofview.shapes.ArcView>
+    <TextView
+        android:id="@+id/splashTool"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="70dp"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="Farmer Helpline\n03111646111"
+        android:textAlignment="center"
+        android:padding="16dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+
+        android:layout_alignParentBottom="true"/>
+
+<!--
+
+    <TextView
+        android:id="@+id/splashSub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:layout_above="@+id/splashTitle"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/splashTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/agriculture_extension_sindh"
+        android:textAlignment="center"
+        android:layout_above="@+id/splashSindhGovt"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/splashSindhGovt"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/splashIct"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/sindh_logo"
+        tools:ignore="MissingConstraints" />
+
+
+    <ImageView
+        android:id="@+id/splashAgriDpt"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/splashSindhGovt"
+        android:layout_toStartOf="@+id/splashIct"
+        android:src="@drawable/agri_logo"
+        tools:ignore="MissingConstraints" />
+
+
+    <ImageView
+        android:id="@+id/splashLogo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/splashSindhGovt"
+        android:layout_toEndOf="@+id/splashIct"
+        android:src="@drawable/extension"
+        tools:ignore="ContentDescription,MissingConstraints" />
+
+
+    <ImageView
+        android:id="@+id/splashIct"
+        android:layout_width="90dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ict_logo"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/splashTitleSindhi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/splashAgriDpt"
+        android:padding="16dp"
+        android:text="@string/app_name_si"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/splashTitleSindhi"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:text="زرعي توسيع زراعت سند کاتو"/>
+
+-->
+
+</RelativeLayout>

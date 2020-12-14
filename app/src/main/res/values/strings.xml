@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">AgriExtSindh</string>
+    <string name="title">AgriExtSindh      زرعي توسيع سنڌ</string>
+    <string name="camera_title">GPS Camera ڪئميرا</string>
+    <string name="diary_text">Pictures Captured تصويرون</string>
+    <string name="diary">Diary ڊائري</string>
+    <string name="app_name_si">زرعي توسيع سنڌ</string>
+    <string name="address">Address</string>
+    <string name="lat_26_434_lang_27_334">Lat:26.434 , Lang: 27.334</string>
+    <string name="save">Save</string>
+    <string name="enter_phone">توهان جو فون نمبر</string>
+    <string name="diary_number">توهان جو ڊائري نمبر</string>
+    <string name="signin">Sign in to Field Diary\nڊائري ۾ داخل ٿيو</string>
+    <string name="confirm">Sign in داخل ٿيو</string>
+    <string name="agriculture_extension_sindh">Agriculture Extension Sindh</string>
+    <string name="take_image">تصوير ڪڍو</string>
+    <string name="save_si">محفوظ ڪيو</string>
+    <string name="camera">ڪئميرا</string>
+    <string name="place">Place</string>
+    <string name="coordinates">Coordinates</string>
+    <string name="farmer">Farmer</string>
+    <string name="verify_phone_number">Verify Phone Number فون نمبر جي تصديق ڪريو</string>
+    <string name="enter_verification_code">Enter verification code\nتصدیقی ڪوڊ داخل ڪريو</string>
+    <string name="code_will_expire_in">Code will expire in\nڪوڊ مدو ختم ٿيندو</string>
+    <string name="at_some_devices_we_detect_code_automatically">Mostly we detect code automatically
+        but maybe on some device you have to enter code manually
+    \nعام طور تي اسان ڪوڊ پاڻمرادو داخل ڪندا آهيون پر شايد ڪجهه ڊوائيس تي توهان کي پنهنجو پاڻ کي ڪوڊ داخل ڪرڻو پوندو</string>
+    <string name="username">Name نالو</string>
+    <string name="logout">Logout/ڪم ڇڏڻ</string>
+    <string name="farmer_name">"Farmer Name/زميندار جو نالو  "</string>
+    <string name="farmer_question">Farmer Question/هارين جو سوال</string>
+    <string name="suggestions">Suggestion/صلاح</string>
+    <string name="phone">Phone/زميندار جو نمبر</string>
+    <string name="diary_form">Diary Form/ڊائري جو فارم</string>
+    <string name="feedback">Feedback  راءِ</string>
+    <string name="account">Account فيلڊ اسسٽنٽ </string>
+    <string name="lat">Lat</string>
+    <string name="lang">Lang</string>
+    <string name="focal_point_nmustafa_nangraj_n03003036689">Focal Point:\nMustafa Nangraj\n03003036689</string>
+    <string name="sagp">SAGP</string>
+    <string name="download">Download</string>
+    <string name="field_guide">Field Guide   فيلڊ گائيڊ </string>
+    <string name="helpline">Agri Helpline زرعي مددگار</string>
+    <string name="sai_satabi_sindh">SAI SATABI SINDH\nسائي ستابي سنڌ</string>
+    <string name="locust_report">Locust Report ماڪڙ اطلاع</string>
+    <string name="default_notification_channel_id">Notification Channel</string>
+    <string name="whatsapp">پنهنجو فون نمبر داخل ڪريو جيڪو توهان جو WhatsApp نمبر آهي</string>
+</resources>

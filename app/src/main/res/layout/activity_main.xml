@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAFAEB"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.github.florent37.shapeofview.shapes.ArcView
+        android:id="@+id/homeArc"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:shape_arc_cropDirection="outside"
+        app:shape_arc_height="20dp"
+        app:shape_arc_position="bottom">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:id="@+id/mainTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:layout_toStartOf="@+id/mainProfile"
+                android:padding="16dp"
+                android:text="@string/title"
+                android:textColor="#FFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/mainProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@color/colorPrimaryDark"
+                android:padding="16dp"
+
+                android:visibility="gone"
+                android:src="@drawable/ic_person_black_24dp"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+
+    </com.github.florent37.shapeofview.shapes.ArcView>
+
+    <ScrollView
+        android:layout_below="@+id/homeArc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/homeAccount"
+        android:padding="16dp">
+
+        <GridLayout
+            android:id="@+id/mainGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:padding="7dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mainCameraCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    app:cardBackgroundColor="#FFF"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="7dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    tools:ignore="MissingConstraints">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="7dp"
+                            android:text="@string/camera_title"
+                            android:textAlignment="center"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_add_a_photo_black_24dp"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mainFeedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginEnd="7dp"
+                    android:padding="7dp"
+                    app:cardBackgroundColor="#FFF"
+                    android:onClick="onPictureCaptures"
+                    app:cardCornerRadius="10dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:ignore="MissingConstraints,PrivateResource">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/diary_text"
+                            android:textAlignment="center"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_baseline_photo_library_24"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mainDiary"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginEnd="7dp"
+                    android:padding="7dp"
+                    app:cardBackgroundColor="#FFF"
+                    app:cardCornerRadius="10dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    android:onClick="onMainDiaryClick"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:ignore="MissingConstraints,PrivateResource">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/diary"
+                            android:textAlignment="center"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_book_black_24dp"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mainLocustReport"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginEnd="7dp"
+                    android:padding="7dp"
+                    app:cardBackgroundColor="#FFF"
+                    app:cardCornerRadius="10dp"
+                    android:onClick="onLocustReportClick"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:ignore="MissingConstraints,PrivateResource">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/locust_report"
+                            android:textAlignment="center"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_baseline_bug_report_24"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mainFieldGuide"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginEnd="7dp"
+                    android:padding="7dp"
+                    android:onClick="onFieldGuideClick"
+                    app:cardBackgroundColor="#FFF"
+                    app:cardCornerRadius="10dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:ignore="MissingConstraints,PrivateResource">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/field_guide"
+                            android:textAlignment="center"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_baseline_contact_support_24"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mainCallCenter"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginEnd="7dp"
+                    android:padding="7dp"
+                    app:cardBackgroundColor="#FFF"
+                    app:cardCornerRadius="10dp"
+                    android:onClick="onHelpLineClick"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:ignore="MissingConstraints,PrivateResource">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/helpline"
+                            android:textAlignment="center"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_baseline_local_phone_24"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginEnd="7dp"
+                    app:cardBackgroundColor="#FFF"
+                    app:cardCornerRadius="10dp"
+                    android:onClick="onSaiSatabiClick"
+                    app:cardElevation="7dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:ignore="MissingConstraints">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sai_satabi_sindh"
+                            android:textAlignment="center"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginEnd="7dp"
+                    android:onClick="onFeedbackClick"
+                    app:cardBackgroundColor="#FFF"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="7dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:ignore="MissingConstraints">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/feedback"
+                            android:textAlignment="center"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_baseline_feedback_24"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </GridLayout>
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/account"
+        android:textAlignment="center"
+        android:onClick="onProfileClick"
+        app:backgroundTint="@color/colorPrimaryDark"
+        android:textColor="#FFF"
+        android:textStyle="bold"
+        android:id="@+id/homeAccount"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"/>
+</RelativeLayout>

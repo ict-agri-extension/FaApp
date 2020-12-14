@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".user.Profile">
+
+
+    <com.github.florent37.shapeofview.shapes.ArcView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:shape_arc_cropDirection="outside"
+        app:shape_arc_height="20dp"
+        app:shape_arc_position="bottom">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:id="@+id/profileTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_toEndOf="@+id/profileBack"
+                android:padding="16dp"
+                android:text="@string/title"
+                android:textColor="#FFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/profileBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:background="@color/colorPrimaryDark"
+                android:padding="16dp"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+
+    </com.github.florent37.shapeofview.shapes.ArcView>
+
+    <ListView
+        android:id="@+id/profileInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/logout"
+            android:textAlignment="center"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:onClick="onLogoutClick"
+            app:backgroundTint="@color/colorPrimaryDark"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+</LinearLayout>
