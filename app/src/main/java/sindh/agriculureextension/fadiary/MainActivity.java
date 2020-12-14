@@ -71,9 +71,17 @@ public class MainActivity extends AppCompatActivity {
     LocationManager locationManager;
     private Location currentLocation;
 
+    @SuppressLint("MissingPermission")
     @Override
     protected void onStart() {
         super.onStart();
+      permissionChecker();
+        isLocationEnabled();
+        //get system location service instance1
+        this.currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+    }
+
+    private void permissionChecker(){
         System.out.println("START");
         String[] per = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
                 , Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
@@ -83,11 +91,25 @@ public class MainActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this, per, PERMISSION_CODE);
             }
         }
-        isLocationEnabled();
-        //get system location service instance1
-        this.currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
     }
 
+    @SuppressLint("MissingPermission")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //register receiver
+        InternetWatcher watcher = new InternetWatcher();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        filter.addAction("android.net.wifi.WIFI_STATE_CHANGED");
+        registerReceiver(watcher, filter);
+
+        permissionChecker();
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                LOCATION_REFRESH_TIME,
+                LOCATION_REFRESH_DISTANCE, locationListenerGPS);
+    }
 
     @SuppressLint("MissingPermission")
     @Override
@@ -97,12 +119,6 @@ public class MainActivity extends AppCompatActivity {
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
         handler=new Handler();
-        //register receiver
-        InternetWatcher watcher = new InternetWatcher();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-        filter.addAction("android.net.wifi.WIFI_STATE_CHANGED");
-        registerReceiver(watcher, filter);
         //copy pdf file from assets
         new Thread(() -> {
             File fileBrochure = new File(Environment.getExternalStorageDirectory() + "/" + "guide.pdf");
@@ -121,12 +137,6 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.mainProfile).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, Profile.class
                 )));
-
-
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                LOCATION_REFRESH_TIME,
-                LOCATION_REFRESH_DISTANCE, locationListenerGPS);
 
     }
 
@@ -270,11 +280,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onProfileClick(View view) {
         startActivity(new Intent(MainActivity.this, Profile.class));
-    }
-
-    public void onSAGPClick(View view) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://sagp.gos.pk/"));
-        startActivity(browserIntent);
     }
 
     public void onMainDiaryClick(View view) {
