@@ -75,13 +75,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-      permissionChecker();
-        isLocationEnabled();
-        //get system location service instance1
-        this.currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        permissionChecker();
     }
 
-    private void permissionChecker(){
+    private void permissionChecker() {
         System.out.println("START");
         String[] per = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
                 , Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
@@ -102,10 +99,10 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter();
         filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
         filter.addAction("android.net.wifi.WIFI_STATE_CHANGED");
+        this.currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         registerReceiver(watcher, filter);
-
         permissionChecker();
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
                 LOCATION_REFRESH_TIME,
                 LOCATION_REFRESH_DISTANCE, locationListenerGPS);
@@ -118,8 +115,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
-        handler=new Handler();
+        handler = new Handler();
         //copy pdf file from assets
+        isLocationEnabled();
+        //get system location service instance1
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                LOCATION_REFRESH_TIME,
+                LOCATION_REFRESH_DISTANCE, locationListenerGPS);
+        this.currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         new Thread(() -> {
             File fileBrochure = new File(Environment.getExternalStorageDirectory() + "/" + "guide.pdf");
             if (!fileBrochure.exists()) {
@@ -143,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void isLocationEnabled() {
 
-        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+        if (locationManager!=null && !locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
             alertDialog.setCancelable(false);
             alertDialog.setTitle("لوڪيشن سينسر کي کوليو");
@@ -154,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             });
             alertDialog.setNegativeButton("منسوخ ڪريو", (dialog, which) -> dialog.cancel());
-            handler.post(()->{
+            handler.post(() -> {
                 AlertDialog alert = alertDialog.create();
                 alert.show();
             });
@@ -189,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onProviderDisabled(String provider) {
-            if(provider==null)
+            if (provider == null)
                 return;
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
             alertDialog.setCancelable(false);
@@ -201,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             });
             alertDialog.setNegativeButton("منسوخ ڪريو", (dialog, which) -> dialog.cancel());
-            handler.post(()->{
+            handler.post(() -> {
                 AlertDialog alert = alertDialog.create();
                 alert.show();
             });
@@ -335,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 File file = new File(Environment.getExternalStorageDirectory() + "/" + SystemClock.currentThreadTimeMillis() + ".jpeg");
                 FileOutputStream fos = new FileOutputStream(file);
-                BitmapFactory.decodeFile(currentPhotoPath).compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                BitmapFactory.decodeFile(currentPhotoPath).compress(Bitmap.CompressFormat.JPEG, 1, fos);
                 if (requestCode == IMAGE_PICK) {
                     DbHelper.getInstance(this).addDiaryRecord(file.getAbsolutePath());
                     Toast.makeText(this, "Diary image has been saved!", Toast.LENGTH_SHORT).show();

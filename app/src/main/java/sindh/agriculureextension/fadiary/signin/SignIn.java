@@ -59,7 +59,7 @@ public class SignIn extends AppCompatActivity {
         findViewById(R.id.signInForm).setAnimation(AnimationUtils.loadAnimation(this, R.anim.in_from_left));
         phoneField = findViewById(R.id.signInPhone);
         progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false);
+        //progressDialog.setCancelable(false);
         progressDialog.setMessage("Please wait/مهرباني ڪري انتظار ڪريو");
 
         FirebaseInstanceId.getInstance().getInstanceId()
@@ -75,26 +75,15 @@ public class SignIn extends AppCompatActivity {
         if (phone.length() == 11) {
             PHONE = phone;
             progressDialog.show();
-            sendRequest(PHONE,true);
+            sendRequest(PHONE);
         } else {
             phoneField.setError("Invalid phone number!");
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 12 && data != null) {
-            if (data.getBooleanExtra("OTP", false)) {
-                //otp verified
-                progressDialog.show();
-                sendRequest(PHONE, data.getBooleanExtra("OTP", false));
-            }
-        }
-    }
-
-    private void sendRequest(String pn, boolean isVerified) {
+    private void sendRequest(String pn) {
         String url = AppHelper.BASE_URL;
+        System.out.println(url);
         StringRequest request = new StringRequest(Request.Method.POST,
                 url, response -> {
             System.out.println("RESPONSE " + response);
@@ -119,16 +108,7 @@ public class SignIn extends AppCompatActivity {
                     progressDialog.cancel();
                     startActivity(intent);
 
-                } /*else if(String.valueOf(jsonObject.get("code")).equals("201")){
-                    // not FA.
-                    Intent intent = new Intent(SignIn.this, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    UserSession userSession = UserSession.getInstance(SignIn.this);
-                    userSession.setPhone(PHONE);
-                    userSession.setUsername("User"+ SystemClock.currentThreadTimeMillis());
-                    progressDialog.cancel();
-                    startActivity(intent);
-                } */else {
+                }else {
                     progressDialog.cancel();
                     Toast.makeText(SignIn.this, "Login Failed!", Toast.LENGTH_SHORT).show();
                 }
@@ -152,7 +132,7 @@ public class SignIn extends AppCompatActivity {
                 map.put("PHONE", pn);
                 map.put("REQUEST","FAS_TASK");
                 map.put("TASK","LOGIN");
-                map.put("OTP", String.valueOf(isVerified));
+
                 return map;
             }
 

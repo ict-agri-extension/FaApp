@@ -21,7 +21,7 @@ import java.util.List;
 public class AppHelper {
 
     // https://fas.ictagrisindh.gov.pk/services/index.php
-    public static final String BASE_URL = " http://192.168.0.103/AgriExtSindh/services/Main.php";
+    public static final String BASE_URL = "https://fas.ictagrisindh.gov.pk/services/index.php";
     /*public static final String FCM_SERVER="key=AAAA0eQEMy4:APA91bFDRZHrS_DYgz0WRlDEhMjKg_5m0B1GmojeoQIy" +
             "1Or_bY2_46YHhmzK5BJiiZMz2OvF04lGIJvHZVqSHlmVpGtgQw2ahCFu7MGfrTrxg3q6NSxi5vaVUQ2gPZ_" +
             "G6Kj7cEQqpZfq";
@@ -42,14 +42,14 @@ public class AppHelper {
         if (image == null)
             return null;
         Bitmap bitmap = BitmapFactory.decodeFile(image);
+        Bitmap compressed=Bitmap.createScaledBitmap(bitmap,420,720,false);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 5, byteArrayOutputStream);
+        compressed.compress(Bitmap.CompressFormat.JPEG, 30, byteArrayOutputStream);
         try {
             FileOutputStream outputStream = new FileOutputStream(image);
             byteArrayOutputStream.writeTo(outputStream);
             bitmap = BitmapFactory.decodeFile(image);
-
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 5, byteArrayOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 10, byteArrayOutputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,7 +90,7 @@ public class AppHelper {
                 file.mkdir();
             String mn = file.getAbsolutePath() + "/" + SystemClock.currentThreadTimeMillis() + ".jpeg";
             FileOutputStream fos = new FileOutputStream(mn);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 1, fos);
             System.out.println("IMAGE SAVED");
             return "Image saved in " + file.getAbsolutePath();
         } catch (Exception e) {
