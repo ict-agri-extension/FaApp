@@ -352,13 +352,13 @@ public class Uploader extends JobIntentService {
                     notificationManager.notify(NOTIFICATION_ID, notification.build());
                     DbHelper.getInstance(getApplicationContext()).updateStatus(model.getID());
                 } else {
-                    notification.setContentText("Server internal error!");
+                    notification.setContentText("Server internal error! Try again later");
                     notification.setProgress(100, 100, false);
                     notificationManager.notify(NOTIFICATION_ID, notification.build());
                 }
             }, error -> {
                 error.printStackTrace();
-                notification.setContentText("Something went wrong!");
+                notification.setContentText("Something went wrong! Try again later.");
                 notification.setProgress(100, 100, false);
                 notificationManager.notify(NOTIFICATION_ID, notification.build());
 

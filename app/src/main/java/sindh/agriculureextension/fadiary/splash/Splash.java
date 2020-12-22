@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import sindh.agriculureextension.fadiary.MainActivity;
 import sindh.agriculureextension.fadiary.R;
-import sindh.agriculureextension.fadiary.signin.SignIn;
+import sindh.agriculureextension.fadiary.Welcome;
 import sindh.agriculureextension.fadiary.user.UserSession;
 
 public class Splash extends AppCompatActivity {
@@ -20,12 +20,13 @@ public class Splash extends AppCompatActivity {
         if (getActionBar() != null)
             getActionBar().hide();
 
+
         Handler handler = new Handler();
         handler.postDelayed(() -> {
             if (UserSession.getInstance(Splash.this).getFAID() != 0)
                 startActivity(new Intent(Splash.this, MainActivity.class));
             else
-                startActivity(new Intent(Splash.this, SignIn.class));
+                startActivity(new Intent(Splash.this, Welcome.class));
 
             Splash.this.finish();
         }, 3000);

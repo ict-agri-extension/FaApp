@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
@@ -21,7 +20,6 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -41,13 +39,10 @@ import com.android.volley.toolbox.StringRequest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import sindh.agriculureextension.fadiary.camera.CameraActivity;
 import sindh.agriculureextension.fadiary.database.DbHelper;
@@ -124,14 +119,6 @@ public class MainActivity extends AppCompatActivity {
                 LOCATION_REFRESH_TIME,
                 LOCATION_REFRESH_DISTANCE, locationListenerGPS);
         this.currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        new Thread(() -> {
-            File fileBrochure = new File(Environment.getExternalStorageDirectory() + "/" + "guide.pdf");
-            if (!fileBrochure.exists()) {
-                System.out.println("Guide not exists creating file...");
-                CopyAssetsbrochure();
-            }
-        }).start();
-
         findViewById(R.id.mainCameraCard)
                 .setOnClickListener(view ->
                         startActivity(new Intent(this, CameraActivity.class)));
@@ -192,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onProviderDisabled(String provider) {
+        public void onProviderDisabled( String provider) {
             if (provider == null)
                 return;
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
@@ -300,7 +287,6 @@ public class MainActivity extends AppCompatActivity {
             try {
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
                 String imageFileName = "JPEG_" + timeStamp + "_";
-
                 File image = File.createTempFile(
                         imageFileName,  /* prefix */
                         ".jpg",         /* suffix */
@@ -407,43 +393,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //method to write the PDFs file to sd card
-    private void CopyAssetsbrochure() {
-        AssetManager assetManager = getAssets();
-
-        try {
-            String fStr = Objects.requireNonNull(assetManager.list(""))[0];
-            InputStream in = null;
-            OutputStream out = null;
-            try {
-                in = assetManager.open(fStr);
-                out = new FileOutputStream(Environment.getExternalStorageDirectory() + "/" + fStr);
-                copyFile(in, out);
-                in.close();
-                in = null;
-                out.flush();
-                out.close();
-                out = null;
-
-            } catch (Exception e) {
-                Log.e("tag", e.getMessage());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    private void copyFile(InputStream in, OutputStream out) throws IOException {
-        byte[] buffer = new byte[1024];
-        int read;
-        while ((read = in.read(buffer)) != -1) {
-            out.write(buffer, 0, read);
-        }
-    }
-
     public void onPictureCaptures(View view) {
         startActivity(new Intent(this, VisitActivity.class));
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.locationManager=null;
+        this.handler=null;
+        this.currentLocation=null;
+    }
 }

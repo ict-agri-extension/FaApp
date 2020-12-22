@@ -45,27 +45,29 @@
 
     </com.github.florent37.shapeofview.shapes.ArcView>
 
-    <ListView
-        android:id="@+id/profileInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ListView
+            android:id="@+id/profileInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/profileLogout"
+            android:layout_margin="16dp" />
+
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/profileLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_margin="16dp"
+            android:onClick="onLogoutClick"
             android:text="@string/logout"
             android:textAlignment="center"
             android:textColor="#FFF"
             android:textStyle="bold"
-            android:onClick="onLogoutClick"
-            app:backgroundTint="@color/colorPrimaryDark"
-            android:layout_alignParentBottom="true" />
+            app:backgroundTint="@color/colorPrimaryDark" />
     </RelativeLayout>
 </LinearLayout>

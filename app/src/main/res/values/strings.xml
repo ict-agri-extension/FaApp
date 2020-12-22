@@ -40,9 +40,12 @@
     <string name="sagp">SAGP</string>
     <string name="download">Download</string>
     <string name="field_guide">Field Guide   فيلڊ گائيڊ </string>
+    <string name="field_guide1">Field Guide \n  فيلڊ گائيڊ </string>
     <string name="helpline">Agri Helpline زرعي مددگار</string>
+    <string name="helpline1">Agri Helpline\nزرعي مددگار</string>
     <string name="sai_satabi_sindh">SAI SATABI SINDH\nسائي ستابي سنڌ</string>
     <string name="locust_report">Locust Report ماڪڙ اطلاع</string>
     <string name="default_notification_channel_id">Notification Channel</string>
     <string name="whatsapp">پنهنجو فون نمبر داخل ڪريو جيڪو توهان جو WhatsApp نمبر آهي</string>
+    <string name="youtube_n">YouTube\n يوٽيوب</string>
 </resources>

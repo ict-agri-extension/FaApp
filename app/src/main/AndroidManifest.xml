@@ -4,7 +4,6 @@
     package="sindh.agriculureextension.fadiary">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -26,13 +25,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name="sindh.agriculureextension.fadiary.visit.VisitActivity"></activity>
-        <activity android:name="sindh.agriculureextension.fadiary.user.Profile" />
-        <activity android:name="sindh.agriculureextension.fadiary.form.FarmerForm" />
-        <activity android:name="sindh.agriculureextension.fadiary.signin.SignIn" />
-        <activity android:name="sindh.agriculureextension.fadiary.camera.CameraActivity" />
-        <activity android:name="sindh.agriculureextension.fadiary.MainActivity" />
-        <activity android:name="sindh.agriculureextension.fadiary.splash.Splash">
+        <activity android:name=".Welcome"></activity>
+        <activity android:name=".visit.VisitActivity" />
+        <activity android:name=".user.Profile" />
+        <activity android:name=".form.FarmerForm" />
+        <activity android:name=".signin.SignIn" />
+        <activity android:name=".camera.CameraActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".splash.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,17 +51,17 @@
         </provider>
 
         <service
-            android:name="sindh.agriculureextension.fadiary.Uploader"
+            android:name=".Uploader"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
-            android:name="sindh.agriculureextension.fadiary.fcm.FCMService"
+            android:name=".fcm.FCMService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <receiver android:name="sindh.agriculureextension.fadiary.network.InternetWatcher">
+        <receiver android:name=".network.InternetWatcher">
             <intent-filter>
                 <action
                     android:name="android.net.conn.CONNECTIVITY_CHANGE"
@@ -69,14 +69,17 @@
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
             </intent-filter>
         </receiver>
-
-        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
-     See README(https://goo.gl/l4GJaQ) for more. -->
+        <!--
+ Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_launcher_foreground" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimaryDark" />
